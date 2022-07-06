@@ -1,10 +1,10 @@
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
-  theme: {
-    extend: {},
-  },
-  plugins: [require("daisyui")],
-  daisyui: {
-    themes: ["luxury"],
-  },
+	content: ["./src/**/*.{js,jsx,ts,tsx}"],
+	theme: {
+		extend: {},
+	},
+	plugins: [require("daisyui"), require("tailwind-scrollbar-hide")],
+	daisyui: {
+		themes: ["luxury"],
+	},
 };

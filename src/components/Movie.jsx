@@ -12,7 +12,7 @@ const Movie = ({ movie }) => {
 				alt={movie?.title}
 			/>
 			<div className="absolute top-0 left-0 w-full h-full p-4 text-white hover:bg-black/70 opacity-0 hover:opacity-100  duration-500">
-				<p className="flex justify-center items-center h-full">
+				<p className="flex justify-center items-center h-full text-sm ">
 					{movie?.title}
 				</p>
 				<p>
