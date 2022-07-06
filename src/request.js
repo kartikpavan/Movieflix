@@ -1,4 +1,4 @@
-const key = "520868e220728d24ddeec8604eea6850";
+const key = import.meta.env.VITE_MOVIE_API_KEY;
 
 export const requests = {
 	requestPopular: `https://api.themoviedb.org/3/movie/popular?api_key=${key}&language=en-US&page=1`,
