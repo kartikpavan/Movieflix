@@ -8,6 +8,7 @@ const Signup = () => {
 	//! defining local states
 	const [email, setEmail] = React.useState("");
 	const [password, setPassword] = React.useState("");
+	const [showPassword, setShowPassword] = React.useState(false);
 
 	const navigate = useNavigate();
 
@@ -24,6 +25,11 @@ const Signup = () => {
 			console.log(error);
 		}
 	}
+
+	//! show password toggler
+	const togglePassword = () => {
+		setShowPassword(!showPassword);
+	};
 
 	return (
 		<>
@@ -47,7 +53,7 @@ const Signup = () => {
 									className="input input-bordered w-full rounded-none p-3 my-2"
 								/>
 								<input
-									type="password"
+									type={showPassword ? "text" : "password"}
 									placeholder="Password"
 									autoComplete="current-password"
 									onChange={(e) =>
@@ -55,6 +61,14 @@ const Signup = () => {
 									}
 									className="input  input-bordered w-full rounded-none p-3 my-2"
 								/>
+								<p className="text-sm text-gray-500 flex items-center mt-2 ">
+									<input
+										onClick={togglePassword}
+										type="checkbox"
+										className="checkbox checkbox-xs rounded-none mr-2"
+									/>
+									Show Password
+								</p>
 								<button
 									type="submit"
 									className="btn bg-red-600 text-white rounded-none py-3 my-6 w-full"

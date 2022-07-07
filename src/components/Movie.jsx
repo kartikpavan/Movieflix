@@ -1,11 +1,34 @@
 import React, { useState } from "react";
 import { BsBookmarkHeart, BsBookmarkCheckFill } from "react-icons/bs";
+import { UserAuth } from "../context/AuthContext";
+import { db } from "../firebase";
+import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 
 const Movie = ({ movie }) => {
+	const { user } = UserAuth();
+	const [saved, setSaved] = useState(false);
 	const [like, setLike] = useState(false);
 
+	const movieID = doc(db, "users", `${user?.email}`);
+
+	const saveShow = async () => {
+		if (user?.email) {
+			setLike(!like);
+			setSaved(true);
+			await updateDoc(movieID, {
+				savedShows: arrayUnion({
+					id: movie.id,
+					title: movie.title,
+					img: movie.backdrop_path,
+				}),
+			});
+		} else {
+			alert("please log In to save the Movie ");
+		}
+	};
+
 	return (
-		<div className="w-[160px] sm:w-[200px] md:w-[240px] lg:[280] inline-block cursor-pointer relative p-2">
+		<div className="w-[200px] sm:w-[200px] md:w-[240px] lg:[280] inline-block cursor-pointer relative p-2">
 			<img
 				className=""
 				src={`https://image.tmdb.org/t/p/w500${movie?.backdrop_path}`}
@@ -15,7 +38,7 @@ const Movie = ({ movie }) => {
 				<p className="flex justify-center items-center h-full text-sm ">
 					{movie?.title}
 				</p>
-				<p>
+				<p onClick={saveShow}>
 					{like ? (
 						<BsBookmarkCheckFill
 							size={32}

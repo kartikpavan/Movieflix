@@ -37,6 +37,7 @@ const Row = ({ title, fetchURL, rowId }) => {
 				{/* slider */}
 				<IoMdArrowDropleftCircle
 					onClick={slideLeft}
+					color={"white"}
 					size={40}
 					className=" h-full  rounded-full absolute opacity-50 hover:opacity-100 cursor-pointer z-10 hidden group-hover:block"
 				/>
@@ -50,6 +51,7 @@ const Row = ({ title, fetchURL, rowId }) => {
 				</div>
 				<IoMdArrowDroprightCircle
 					onClick={slideRight}
+					color={"white"}
 					size={40}
 					className=" right-0 rounded-full absolute opacity-50 hover:opacity-100 cursor-pointer z-10 hidden group-hover:block"
 				/>

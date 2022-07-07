@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState, createContext } from "react";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
 import {
 	createUserWithEmailAndPassword,
 	signInWithEmailAndPassword,
 	onAuthStateChanged,
 	signOut,
 } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
 
 const AuthContext = createContext();
 
@@ -14,17 +15,21 @@ export function AuthContextProvider({ children }) {
 
 	//! Sign Up Function
 	function signUp(email, password) {
-		return createUserWithEmailAndPassword(auth, email, password);
+		createUserWithEmailAndPassword(auth, email, password);
+
+		setDoc(doc(db, "users", email), {
+			savedShows: [],
+		});
 	}
 
 	//! Sign In Function
 	function signIn(email, password) {
-		return signInWithEmailAndPassword(auth, email, password);
+		signInWithEmailAndPassword(auth, email, password);
 	}
 
 	//! Log Out Function
 	function logOut() {
-		return signOut(auth);
+		signOut(auth);
 	}
 
 	useEffect(() => {
