@@ -1,7 +1,33 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { UserAuth } from "../context/AuthContext";
 
 const login = () => {
+	//! importing methods and state from context
+	const { signIn, user } = UserAuth();
+	//! defining local states
+	const [email, setEmail] = React.useState("");
+	const [password, setPassword] = React.useState("");
+	const [error, setError] = React.useState("");
+
+	const navigate = useNavigate();
+
+	async function submitHandeler(e) {
+		e.preventDefault();
+		setError("");
+		try {
+			if (!email && !password) {
+				alert("incomplete credentials");
+			} else {
+				await signIn(email, password);
+				navigate("/");
+			}
+		} catch (error) {
+			console.log(error);
+			setError(error.message);
+		}
+	}
+
 	return (
 		<>
 			{" "}
@@ -16,14 +42,24 @@ const login = () => {
 					<div className="max-w-[450px] h-[500px] mx-auto bg-black/75 text-white">
 						<div className="max-w-[320px] mx-auto py-16">
 							<h1 className="text-3xl font-bold">Login</h1>
-							<form className="py-4">
+							{error ? (
+								<p className="text-lg p-3 text-red-700">
+									{" "}
+									{error}
+								</p>
+							) : null}
+							<form className="py-4" onSubmit={submitHandeler}>
 								<input
+									onChange={(e) => setEmail(e.target.value)}
 									type="email"
 									placeholder="Email"
 									autoComplete="email"
 									className="input input-bordered w-full rounded-none p-3 my-2"
 								/>
 								<input
+									onChange={(e) =>
+										setPassword(e.target.value)
+									}
 									type="password"
 									placeholder="Password"
 									autoComplete="current-password"

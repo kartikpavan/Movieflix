@@ -1,6 +1,30 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { UserAuth } from "../context/AuthContext";
+
 const Signup = () => {
+	//! importing methods and state from context
+	const { signUp, user } = UserAuth();
+	//! defining local states
+	const [email, setEmail] = React.useState("");
+	const [password, setPassword] = React.useState("");
+
+	const navigate = useNavigate();
+
+	async function submitHandeler(e) {
+		e.preventDefault();
+		try {
+			if (!email && !password) {
+				alert("incomplete credentials");
+			} else {
+				await signUp(email, password);
+				navigate("/");
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
 	return (
 		<>
 			<div className="w-full h-screen">
@@ -14,20 +38,27 @@ const Signup = () => {
 					<div className="max-w-[450px] h-[500px] mx-auto bg-black/75 text-white">
 						<div className="max-w-[320px] mx-auto py-16">
 							<h1 className="text-3xl font-bold">Sign Up</h1>
-							<form className="py-4">
+							<form className="py-4" onSubmit={submitHandeler}>
 								<input
 									type="email"
 									placeholder="Email"
 									autoComplete="email"
+									onChange={(e) => setEmail(e.target.value)}
 									className="input input-bordered w-full rounded-none p-3 my-2"
 								/>
 								<input
 									type="password"
 									placeholder="Password"
 									autoComplete="current-password"
+									onChange={(e) =>
+										setPassword(e.target.value)
+									}
 									className="input  input-bordered w-full rounded-none p-3 my-2"
 								/>
-								<button className="btn bg-red-600 text-white rounded-none py-3 my-6 w-full">
+								<button
+									type="submit"
+									className="btn bg-red-600 text-white rounded-none py-3 my-6 w-full"
+								>
 									Create an Account
 								</button>
 								<div className="flex items-center justify-between text-sm text-gray-400">
