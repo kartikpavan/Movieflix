@@ -43,9 +43,9 @@ const login = () => {
 						<div className="max-w-[320px] mx-auto py-16">
 							<h1 className="text-3xl font-bold">Login</h1>
 							{error ? (
-								<p className="text-lg p-3 text-red-700">
+								<p className="text-md p-3 mt-2 font-bold text-red-700 bg-red-300">
 									{" "}
-									{error}
+									{error.slice(10)}
 								</p>
 							) : null}
 							<form className="py-4" onSubmit={submitHandeler}>

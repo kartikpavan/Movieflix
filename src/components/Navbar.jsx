@@ -33,11 +33,14 @@ const Navbar = () => {
 			{/* Sign in and Sign Up  and Logout conditional rendering */}
 			{user?.email ? (
 				<div className="flex items-center gap-4">
-					<MdAccountCircle
-						size={44}
-						color={"white"}
-						className="cursor-pointer"
-					/>
+					<Link to="/account">
+						<MdAccountCircle
+							size={44}
+							color={"white"}
+							className="cursor-pointer"
+						/>
+					</Link>
+
 					<button
 						onClick={logOutHandeler}
 						className="btn bg-red-600 rounded-none mx-2 pl-4 text-white border-none"
