@@ -26,7 +26,7 @@ const Navbar = () => {
 					<img
 						src={Logo}
 						alt="logo"
-						className="w-48 h-auto cursor-pointer"
+						className=" w-24 sm:w-48 h-auto cursor-pointer"
 					/>
 				</Link>
 			</div>
@@ -43,7 +43,7 @@ const Navbar = () => {
 
 					<button
 						onClick={logOutHandeler}
-						className="btn bg-red-600 rounded-none mx-2 pl-4 text-white border-none"
+						className="btn btn-xs sm:btn-md bg-red-600 rounded-none mx-2 pl-4 text-white border-none"
 					>
 						Log Out
 					</button>
@@ -51,30 +51,17 @@ const Navbar = () => {
 			) : (
 				<div>
 					<Link to="/login">
-						<button className="btn btn-ghost pr-4 mx-2 rounded-none">
+						<button className=" btn btn-ghost btn-xs sm:btn-md pr-4 mx-2 rounded-none">
 							Log In
 						</button>
 					</Link>
 					<Link to="signup">
-						<button className="btn btn-primary  rounded-none">
+						<button className="btn btn-primary btn-xs sm:btn-md  rounded-none">
 							Sign Up
 						</button>
 					</Link>
 				</div>
 			)}
-
-			{/* <div>
-				<Link to="/login">
-					<button className="btn btn-ghost pr-4 mx-2 apitalize">
-						Sign In
-					</button>
-				</Link>
-				<Link to="signup">
-					<button className="btn btn-primary  rounded">
-						Sign Up
-					</button>
-				</Link>
-			</div> */}
 		</div>
 	);
 };
