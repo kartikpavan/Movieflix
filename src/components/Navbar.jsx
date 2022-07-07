@@ -17,10 +17,16 @@ const Navbar = () => {
 			</div>
 			{/* Sign in and Sign Up  */}
 			<div>
-				<button className="btn btn-ghost pr-4 mx-2 apitalize">
-					Sign In
-				</button>
-				<button className="btn btn-primary  rounded">Sign Up</button>
+				<Link to="/login">
+					<button className="btn btn-ghost pr-4 mx-2 apitalize">
+						Sign In
+					</button>
+				</Link>
+				<Link to="signup">
+					<button className="btn btn-primary  rounded">
+						Sign Up
+					</button>
+				</Link>
 			</div>
 		</div>
 	);
