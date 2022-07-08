@@ -71,14 +71,18 @@ const login = () => {
 									autoComplete="current-password"
 									className="input  input-bordered w-full rounded-none p-3 my-2"
 								/>
-								<p className="text-sm text-gray-500 flex items-center mt-2 ">
+								<lable
+									htmlFor="htmlFor"
+									className="text-sm text-gray-500 flex items-center mt-2 "
+								>
 									<input
+										id="showPass"
 										onClick={togglePassword}
 										type="checkbox"
 										className="checkbox checkbox-xs rounded-none mr-2"
 									/>
 									Show Password
-								</p>
+								</lable>
 								<button className="btn bg-red-600 text-white rounded-none py-3 my-6 w-full">
 									Login
 								</button>
