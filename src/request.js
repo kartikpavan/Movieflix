@@ -14,7 +14,8 @@ export const requests = {
 	requestFantasy: `https://api.themoviedb.org/3/discover/movie?api_key=${key}&language=en-US&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=2020-12-31&with_genres=14`,
 	requestMusic: `https://api.themoviedb.org/3/discover/movie?api_key=${key}&language=en-US&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=2020-12-31&with_genres=10402`,
 	requestMystery: `https://api.themoviedb.org/3/discover/movie?api_key=${key}&language=en-US&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=2020-12-31&with_genres=9648`,
-
+	requestRomance: `https://api.themoviedb.org/3/discover/movie?api_key=${key}&language=en-US&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=2020-12-31&with_genres=10749`,
+	requestScifi: `https://api.themoviedb.org/3/discover/movie?api_key=${key}&language=en-US&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=2020-12-31&with_genres=878`,
 	requestThriller: `https://api.themoviedb.org/3/discover/movie?api_key=${key}&language=en-US&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=2020-12-31&with_genres=53`,
 	requestWestern: `https://api.themoviedb.org/3/discover/movie?api_key=${key}&language=en-US&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=2020-12-31&with_genres=37`,
 };

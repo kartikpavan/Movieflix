@@ -48,7 +48,16 @@ const Home = () => {
 				title="Mystery"
 				fetchURL={requests.requestMystery}
 			/>
-
+			<Row
+				rowId="13"
+				title="Romance"
+				fetchURL={requests.requestRomance}
+			/>
+			<Row
+				rowId="14"
+				title="Science-Fiction"
+				fetchURL={requests.requestScifi}
+			/>
 			<Row
 				rowId="15"
 				title="Thriller"
