@@ -1,13 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { BsBookmarkHeart, BsBookmarkCheckFill } from "react-icons/bs";
 import { UserAuth } from "../context/AuthContext";
 import { db } from "../firebase";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { Dialog, Transition } from "@headlessui/react";
+
+import Modal from "./Modal";
 
 const Movie = ({ movie }) => {
 	const { user } = UserAuth();
 	const [saved, setSaved] = useState(false);
 	const [like, setLike] = useState(false);
+
+	let [isOpen, setIsOpen] = useState(false);
+
+	function closeModal() {
+		setIsOpen(false);
+	}
+
+	function openModal() {
+		setIsOpen(true);
+	}
 
 	const movieID = doc(db, "users", `${user?.email}`);
 
@@ -28,7 +41,16 @@ const Movie = ({ movie }) => {
 	};
 
 	return (
-		<div className="w-[200px] sm:w-[200px] md:w-[240px] lg:[280] inline-block cursor-pointer relative p-2">
+		<div
+			className="w-[200px] sm:w-[200px] md:w-[240px] lg:[280] inline-block cursor-pointer relative p-2"
+			onClick={openModal}
+		>
+			<Modal
+				openModal={openModal}
+				closeModal={closeModal}
+				isOpen={isOpen}
+				movie={movie}
+			/>
 			<img
 				className=""
 				src={`https://image.tmdb.org/t/p/w500${movie?.backdrop_path}`}

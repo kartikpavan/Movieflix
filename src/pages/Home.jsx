@@ -22,7 +22,9 @@ const Home = () => {
 				title="Trending"
 				fetchURL={requests.requestTrending}
 			/>
-			<Row rowId="5" title="Horror" fetchURL={requests.requestHorror} />
+			<Row rowId="5" title="Action" fetchURL={requests.requestAction} />
+			<Row rowId="6" title="Horror" fetchURL={requests.requestHorror} />
+			<Row rowId="7" title="Crime" fetchURL={requests.requestCrime} />
 		</>
 	);
 };
