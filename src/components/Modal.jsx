@@ -1,69 +1,24 @@
 import React, { Fragment, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { fetchData } from "../utils/fetchData";
-import AliceCarousel from "react-alice-carousel";
 import { AiOutlineCloseCircle } from "react-icons/ai";
-import "react-alice-carousel/lib/alice-carousel.css";
+import Carousel from "./Carousel";
 
 const Modal = ({ isOpen, openModal, closeModal, movie }) => {
 	const [video, setVideo] = React.useState();
-	const [credits, setCredits] = React.useState();
+
+	const fetchVideo = async () => {
+		const videoData = await fetchData(
+			`https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=${
+				import.meta.env.VITE_MOVIE_API_KEY
+			}&language=en-US`
+		);
+		setVideo(videoData.results[0]?.key);
+	};
 
 	useEffect(() => {
-		const fetchMovieData = async () => {
-			const videoData = await fetchData(
-				`https://api.themoviedb.org/3/movie/${
-					movie.id
-				}/videos?api_key=${
-					import.meta.env.VITE_MOVIE_API_KEY
-				}&language=en-US`
-			);
-			const movieCredit = await fetchData(
-				`https://api.themoviedb.org/3/movie/${
-					movie.id
-				}/credits?api_key=${
-					import.meta.env.VITE_MOVIE_API_KEY
-				}&language=en-US`
-			);
-
-			setCredits(movieCredit.cast);
-
-			setVideo(videoData.results[0]?.key);
-		};
-		fetchMovieData();
+		fetchVideo();
 	}, []);
-
-	function handleDragStart(e) {
-		e.preventDefault();
-	}
-
-	const items = credits?.map((item) => {
-		return (
-			<div className="flex flex-col object-contain p-2">
-				<img
-					className="border mb-2 shadow-md"
-					src={
-						item.profile_path
-							? `https://image.tmdb.org/t/p/w300/${item.profile_path}`
-							: `https://via.placeholder.com/300`
-					}
-					alt={item.name}
-					onDragStart={handleDragStart}
-				/>
-				<p>{item.name}</p>
-			</div>
-		);
-	});
-
-	const responsive = {
-		0: {
-			items: 3,
-		},
-		512: { items: 5 },
-		1024: {
-			items: 7,
-		},
-	};
 
 	return (
 		<>
@@ -129,15 +84,7 @@ const Modal = ({ isOpen, openModal, closeModal, movie }) => {
 										<p className="text-2xl font-semibold text-white">
 											Cast
 										</p>
-										<AliceCarousel
-											mouseTracking
-											autoPlay
-											infinite
-											disableButtonsControls
-											disableDotsControls
-											responsive={responsive}
-											items={items}
-										/>
+										<Carousel movieId={movie.id} />
 									</div>
 								</Dialog.Panel>
 							</Transition.Child>
