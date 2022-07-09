@@ -59,21 +59,22 @@ const Modal = ({ isOpen, openModal, closeModal, movie }) => {
 											className="h-auto w-[250px] md:w-full md:h-[350px] mx-auto"
 											src={`https://www.youtube.com/embed/${video}`}
 											title={movie.name}
-											frameborder="0"
+											frameBorder="0"
 											allow="accelerometer;  clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 										></iframe>
 									</div>
 									<Dialog.Title className="text-2xl my-4 font-bold leading-6 text-white text-center">
 										<p className="flex items-center justify-center">
 											{movie.title}
+											<span className="text-md text-gray-400 mx-2 my-2">
+												(
+												{movie.release_date.slice(0, 4)}
+												)
+											</span>
 											<span className="badge badge-outline rounded-none text-sm text-gray-400 mx-2">
 												{movie.original_language.toUpperCase()}
 											</span>
 										</p>
-
-										<div className="text-md text-gray-400 mx-4 my-2">
-											({movie.release_date.slice(0, 4)})
-										</div>
 									</Dialog.Title>
 									<div>
 										<p className="text-lg">

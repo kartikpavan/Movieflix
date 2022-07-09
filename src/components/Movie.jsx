@@ -53,7 +53,11 @@ const Movie = ({ movie }) => {
 			/>
 			<img
 				className=""
-				src={`https://image.tmdb.org/t/p/w500${movie?.backdrop_path}`}
+				src={
+					movie?.backdrop_path
+						? `https://image.tmdb.org/t/p/w500${movie?.backdrop_path}`
+						: `https://via.placeholder.com/240x140`
+				}
 				alt={movie?.title}
 			/>
 			<div className="absolute top-0 left-0 w-full h-full p-4 text-white hover:bg-black/70 opacity-0 hover:opacity-100  duration-500">

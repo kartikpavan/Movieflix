@@ -56,6 +56,7 @@ const Carousel = ({ movieId }) => {
 			<AliceCarousel
 				mouseTracking
 				autoPlay
+				autoPlayInterval={1000}
 				infinite
 				disableButtonsControls
 				disableDotsControls
